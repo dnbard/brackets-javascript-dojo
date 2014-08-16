@@ -1,4 +1,6 @@
 define(function (require, exports, module) {
+    require('./DAL/service').init();
+
     var ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
         iconService = require('./services/icon'),
         modalService = require('./services/modal');

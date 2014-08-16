@@ -1,0 +1,17 @@
+<div id="page-welcome" data-bind="visible: isPageVisible('WELCOME'), with: welcome">
+    <h1 class="text-center">Javascript Dojo</h1>
+    <div class="text-center">Register or log in</div>
+    <div>
+        <span class="ejd_col2 text-right">Login</span>
+        <input class="ejd_col2" data-bind="value: username, valueUpdate: 'afterkeydown'" />
+    </div>
+    <div>
+        <span class="ejd_col2 text-right">Password</span>
+        <input class="ejd_col2" data-bind="value: password, valueUpdate: 'afterkeydown'" />
+    </div>
+    <div class="buttons_panel text-center">
+        <div class="ejd_col1"></div>
+        <button class="btn primary" data-bind="enable: isButtonEnabled, click: onRegisterClick">Register</button>
+        <button class="btn default" data-bind="enable: isButtonEnabled">Log in</button>
+    </div>
+</div>

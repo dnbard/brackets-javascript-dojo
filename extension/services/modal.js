@@ -1,6 +1,9 @@
 define(function(require, exports){
     var Dialogs = brackets.getModule('widgets/Dialogs'),
-        modalTemplate = require('text!../templates/modal.html'),
+        _ = require('../vendor/lodash'),
+        modalTemplate = _.template(require('text!../templates/modal.html'), {
+            welcome: require('text!../templates/welcome.html')
+        }),
         ko = require('../vendor/knockout'),
         ModalViewModel = require('../viewmodels/modalViewModel');
     

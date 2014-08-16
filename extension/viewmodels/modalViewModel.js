@@ -8,11 +8,19 @@ define(function(require, exports, module){
         guid = require('../services/guid'),
         icon = require('../services/icon'),
         storage = require('../services/storage'),
-        path = config.path + 'cache/';
+        path = config.path + 'cache/',
+        WelcomeViewModel = require('./welcomeViewModel'),
+        Pages = require('../enums/pages');
     
     function ModalViewModel(dialog){
         var self = this;
+
+        this.welcome = new WelcomeViewModel();
+
         this.dialog = dialog;
+        this.currentPage = ko.observable(null);
+
+        this.user = ko.observable(storage.get()['user'] || null);
 
         this.openDocument = function(model){
             DocumentManager.getDocumentForPath(path + model.id + '.css')
@@ -21,6 +29,18 @@ define(function(require, exports, module){
                     this.close();
                 }, self));
         }
+
+        this.init = function(){
+            if (this.user() === null){
+                this.currentPage(Pages.WELCOME);
+            }
+        }
+
+        this.isPageVisible = function(page){
+            return this.currentPage() === page;
+        }
+
+        this.init();
     }
 
     ModalViewModel.prototype.close = function(){
